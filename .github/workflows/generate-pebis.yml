@@ -36,8 +36,8 @@ jobs:
       - name: Archive upstream EPG
         run: |
           curl -sSL --fail --retry 3 \
-            "https://github.com/matthuisman/i.mjh.nz/raw/refs/heads/master/PBS/all.xml" \
-            -o pebis_epg.xml && gzip -f pebis_epg.xml \
+            "https://i.mjh.nz/PBS/all.xml.gz" \
+            -o pebis_epg.xml.gz \
             || echo "EPG archive failed - keeping previous copy"
 
       - name: Commit and push if changed
@@ -52,3 +52,4 @@ jobs:
             git pull --rebase origin main || git rebase --abort
             git push
           fi
+          
