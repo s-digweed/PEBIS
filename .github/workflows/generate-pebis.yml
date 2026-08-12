@@ -1,0 +1,54 @@
+name: Generate PEBIS Playlist
+
+on:
+  schedule:
+    # 09:00 UTC = 12pm KSA
+    - cron: "0 9 * * *"
+    # 16:00 UTC = 7pm KSA
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "generate_pebis.py"
+      - ".github/workflows/generate-pebis.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Generate playlist
+        run: python generate_pebis.py
+
+      - name: Archive upstream EPG
+        run: |
+          curl -sSL --fail --retry 3 \
+            "https://github.com/matthuisman/i.mjh.nz/raw/refs/heads/master/PBS/all.xml" \
+            -o pebis_epg.xml && gzip -f pebis_epg.xml \
+            || echo "EPG archive failed - keeping previous copy"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pebis.m3u pebis_source.json pebis_epg.xml.gz
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update Pebis playlist [skip ci]"
+            git pull --rebase origin main || git rebase --abort
+            git push
+          fi
