@@ -126,7 +126,7 @@ https://wtvsdt.lls.pbs.org/lls/wtvsdt/wtvsdt-dash-drm/dash-drm.mpd
 #KODIPROP:inputstream.adaptive.license_key=https://proxy.drm.pbs.org/license/widevine/5923b641-9ec4-4c38-98b8-1d2fed451602-dash|User-Agent=okhttp/4.9.0|R{SSM}|
 #KODIPROP:inputstream.adaptive.stream_headers=User-Agent=okhttp/4.9.0
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
-https://zecpdt.lls.pbs.org/lls/zecpdt/zecpdt-dash-drm/dash-drm.mpd
+https://urs-anonymous-detect.pbs.org/redirect/843dfdb28c504139822673c447d0c509/
 
 #EXTINF:-1 tvg-id="WETP" tvg-name="etpbs" tvg-logo="https://image.pbs.org/stations/wetp-white-logo-hxY8pN4.png" group-title="Pebis",etpbs
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
