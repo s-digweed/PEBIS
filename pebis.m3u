@@ -424,7 +424,7 @@ https://kusmdt.lls.pbs.org/lls/kusmdt/kusmdt-dash-drm/dash-drm.mpd
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://wcfedt.lls.pbs.org/lls/wcfedt/wcfedt-dash-drm/dash-drm.mpd
 
-#EXTINF:-1 tvg-id="WMPN" tvg-name="mpb" tvg-logo="https://image.pbs.org/stations/wmpn-white-logo-mNSRT4e.png" group-title="Pebis",mpb
+#EXTINF:-1 tvg-id="WMPN" tvg-name="MPB" tvg-logo="https://image.pbs.org/stations/wmpn-white-logo-mNSRT4e.png" group-title="Pebis",MPB
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://proxy.drm.pbs.org/license/widevine/9f106c58-06b4-4b0a-b328-1721fd590df6-dash|User-Agent=okhttp/4.9.0|R{SSM}|
