@@ -315,6 +315,80 @@ def _n(s):
     s = re.sub(r"[\(\[][^\)\]]*[\)\]]", " ", s)            # drop (bracketed) notes
     return re.sub(r"[^a-z0-9]", "", s)
 
+# ── 6a. Gracenote layer: Matt's PBS guide (same feed PEBIS main uses) ──────────
+# Gracenote carries PBS's own season/episode numbers plus the TMS episode id
+# (dd_progid EP04282939.0008), which PBS's schedule API also exposes as
+# episode_tms_id -> an exact join. Every run adds what it sees to km_se_cache.json
+# ("gn_tms" / "gn_title"), so coverage keeps growing as episodes cycle through.
+GN_URLS = [u for u in os.getenv("KM_GN_URLS",
+           "https://i.mjh.nz/PBS/all.xml.gz "
+           "https://raw.githubusercontent.com/s-digweed/PEBIS/main/pebis_epg.xml.gz").split() if u]
+GN_KEEP_DAYS = 365
+GN_SE_DESC = re.compile(r"Season\s+(\d+)\s*-\s*Episode\s+(\d+)", re.I)
+GN_SUB_DESC = re.compile(r'^\s*(?:NEW\s+)?"([^"]+)"\s*\|')
+
+def _tms(v):
+    return re.sub(r"[^A-Z0-9]", "", str(v or "").upper())
+
+def gracenote_harvest(cache):
+    import xml.etree.ElementTree as ET
+    tmsc, titc = cache.setdefault("gn_tms", {}), cache.setdefault("gn_title", {})
+    now, added, ok = time.time(), 0, 0
+    for url in GN_URLS:
+        try:
+            r = requests.get(url, timeout=60, headers={"User-Agent": "Mozilla/5.0"})
+            r.raise_for_status()
+            raw = r.content
+            if raw[:2] == b"\x1f\x8b":
+                raw = gzip.decompress(raw)
+            root = ET.fromstring(raw)
+        except Exception as e:
+            log(f"Gracenote: {url} failed ({type(e).__name__})"); continue
+        ok += 1
+        for p in root.iter("programme"):
+            se, tms = None, None
+            for e in p.findall("episode-num"):
+                sysn, txt = e.get("system"), (e.text or "").strip()
+                if sysn == "dd_progid":
+                    tms = _tms(txt)
+                elif sysn == "onscreen" and not se:
+                    m = re.match(r"S(\d+)\s*E(\d+)", txt, re.I)
+                    if m: se = (int(m[1]), int(m[2]))
+                elif sysn == "xmltv_ns" and not se:
+                    m = re.match(r"\s*(\d+)\s*\.\s*(\d+)", txt)
+                    if m: se = (int(m[1]) + 1, int(m[2]) + 1)
+            desc = p.findtext("desc") or ""
+            if not se:
+                m = GN_SE_DESC.search(desc)
+                if m: se = (int(m[1]), int(m[2]))
+            if not se or se[0] > 100:
+                continue
+            if tms and tms.startswith("EP"):
+                if tms not in tmsc: added += 1
+                tmsc[tms] = [se[0], se[1], now]
+            m = GN_SUB_DESC.match(desc)
+            sub = p.findtext("sub-title") or (m[1] if m else "")
+            title = p.findtext("title") or ""
+            if title and sub:
+                titc[f"{_n(title)}|{_n(sub)}"] = [se[0], se[1], now]
+    cut = now - GN_KEEP_DAYS * 86400
+    for d in (tmsc, titc):
+        for k in [k for k, v in d.items() if v[2] < cut]:
+            del d[k]
+    log(f"Gracenote: {ok}/{len(GN_URLS)} sources read; {len(tmsc)} episode ids "
+        f"(+{added} new), {len(titc)} title keys on file")
+    return tmsc, titc
+
+def gracenote_se(it, tmsc, titc):
+    t = _tms(it.get("episode_tms_id"))
+    if t and t in tmsc:
+        return tuple(tmsc[t][:2])
+    show, ep = it.get("show_title") or "", it.get("episode_title") or ""
+    if show and ep:
+        v = titc.get(f"{_n(show)}|{_n(ep)}")
+        if v: return tuple(v[:2])
+    return None
+
 class SELookup:
     def __init__(self):
         try:
@@ -550,12 +624,19 @@ def main():
         lines.append("")
     open(OUT_M3U, "w", encoding="utf-8").write("\n".join(lines))
 
-    # ---- season/episode lookup (OMDb, then TMDB) ----
+    # ---- season/episode lookup: Gracenote, then OMDb, then TMDB ----
+    try:
+        _cache = json.load(open(SE_CACHE_FILE, encoding="utf-8"))
+    except Exception:
+        _cache = {}
+    gn_tms, gn_title = gracenote_harvest(_cache)
+    json.dump(_cache, open(SE_CACHE_FILE, "w", encoding="utf-8"), separators=(",", ":"))
     wanted = {}
     for c in chans:
         for it in c["items"]:
             show, ep = (it.get("show_title") or "").strip(), (it.get("episode_title") or "").strip()
-            if show and ep and _n(ep) != _n(show) and not season_episode(it):
+            if show and ep and _n(ep) != _n(show) and not season_episode(it) \
+                    and not gracenote_se(it, gn_tms, gn_title):
                 wanted.setdefault(show, {}); wanted[show][ep] = wanted[show].get(ep, 0) + 1
     se_map = SELookup().resolve(wanted) if (OMDB_KEY or TMDB_KEY) else {}
 
@@ -566,6 +647,7 @@ def main():
         x.append(f'<channel id={quoteattr(c["tvg"])}><display-name>{escape(c["name"])}</display-name>'
                  + (f'<icon src={quoteattr(c["logo"])}/>' if c["logo"] else "") + "</channel>")
     n = se_n = desc_n = 0; keys = {}; reach = []
+    src = {"PBS": 0, "Gracenote": 0, "OMDb": 0, "TMDB": 0}
     for c in order:
         seen_st, last = set(), None
         for it in sorted(c["items"], key=lambda i: i.get("start_time") or ""):
@@ -593,9 +675,14 @@ def main():
             if it.get("listing_image"):
                 p += f'<icon src={quoteattr(it["listing_image"])}/>'
             se = season_episode(it)
+            if se: src["PBS"] += 1
+            else:
+                se = gracenote_se(it, gn_tms, gn_title)
+                if se: src["Gracenote"] += 1
             if not se:
                 hit = se_map.get(((it.get("show_title") or "").strip(), sub))
                 se = hit[:2] if hit else None
+                if se: src[hit[2]] += 1
             if se:
                 p += (f'<episode-num system="onscreen">S{se[0]:02d} E{se[1]:02d}</episode-num>'
                       f'<episode-num system="xmltv_ns">{se[0]-1}.{se[1]-1}.</episode-num>'); se_n += 1
@@ -608,7 +695,8 @@ def main():
         f.write(data)
     reach.sort()
     log(f"guide: {n} programmes for {sum(1 for c in chans if c['items'])}/{len(chans)} channels; "
-        f"{desc_n} with description, {se_n} with Sxx Eyy")
+        f"{desc_n} with description, {se_n} with Sxx Eyy ("
+        + ", ".join(f"{k} {v}" for k, v in src.items()) + ")")
     if reach:
         log(f"guide reach: median {reach[len(reach)//2]:.0f} h ahead, max {reach[-1]:.0f} h")
     log("PBS listing fields seen (for tuning S/E): " +
