@@ -56,6 +56,9 @@ KEEP_PAST_H  = 3
 WORKERS      = int(os.getenv("KM_WORKERS", "8"))
 EXTRA_ZIPS   = [z for z in re.split(r"[\s,]+", os.getenv("KM_EXTRA_ZIPS", "")) if z]
 INCLUDE_DRM  = os.getenv("KM_INCLUDE_DRM", "1") != "0"
+# Local subchannels that re-brand Create/World/NHK/FNX ("KERA Create", "NE-World") are
+# KEPT by default (Taqi wants every channel). Set KM_SKIP_REBRANDS=1 to drop them.
+SKIP_REBRANDS = os.getenv("KM_SKIP_REBRANDS", "0") == "1"
 DRM_UA       = "okhttp/4.9.0"            # same as the main PEBIS playlist (works in TiviMate)
 
 PROFILE_LABELS = {
@@ -302,7 +305,7 @@ TMDB_KEY        = os.getenv("TMDB_API_KEY", "").strip()
 SE_CACHE_FILE   = "km_se_cache.json"
 SE_TTL_DAYS     = 30
 OMDB_RUN_BUDGET = int(os.getenv("KM_OMDB_BUDGET", "450"))   # 2 runs/day stays under 1,000
-TMDB_RUN_BUDGET = int(os.getenv("KM_TMDB_BUDGET", "4000"))
+TMDB_RUN_BUDGET = int(os.getenv("KM_TMDB_BUDGET", "12000"))  # TMDB has no daily cap
 MAX_SEASONS     = 60
 
 def _n(s):
@@ -491,7 +494,7 @@ def main():
             key = (r["profile"],)                    # one per national network
         if key in seen:
             continue
-        if r["profile"].startswith("ga-local-subchannel"):
+        if SKIP_REBRANDS and r["profile"].startswith("ga-local-subchannel"):
             full = sub_names.get(r["sid"], {}).get(r["profile"], "").lower()
             if any(re.search(rf"\b{m}\b", full) for m in SIMULCAST_MARKERS):
                 skipped_sim.append(sub_names[r['sid']][r['profile']])
@@ -526,8 +529,8 @@ def main():
         if counts[c["name"]] > 1 and c["call"] and c["call"] not in c["name"]:
             c["name"] = f"{c['name']} ({c['call']})"
     log(f"channels: {len(chans)} kept ({sum(1 for c in chans if c['clear'])} clear / "
-        f"{sum(1 for c in chans if c['drm'])} DRM); {len(skipped_sim)} subchannels skipped "
-        f"as Create/World/NHK/FNX re-brands")
+        f"{sum(1 for c in chans if c['drm'])} DRM)"
+        + (f"; {len(skipped_sim)} subchannels skipped as Create/World/NHK/FNX re-brands" if SKIP_REBRANDS else ""))
 
     # ---- M3U ----
     order = sorted(chans, key=lambda c: (c["group"] != "PBS National", c["group"], c["name"].lower()))
