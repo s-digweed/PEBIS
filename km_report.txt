@@ -1,0 +1,11 @@
+PEBIS KM build 2026-10-26 19:21 UTC
+ZIP sweep: 907 ZIP codes
+ZIP sweep: 146 stations found (0 ZIP lookups failed)
+station details: 146 ok, 0 failed
+feeds: 615 playable (323 clear, 292 DRM) across 146 stations
+schedules: 146 / 146 stations returned listings
+channels: 341 kept (49 clear / 292 DRM); 10 subchannels skipped as Create/World/NHK/FNX re-brands
+guide: 100020 programmes for 341/341 channels; 99148 with description, 1 with Sxx Eyy
+guide reach: median 155 h ahead, max 163 h
+PBS listing fields seen (for tuning S/E): start_time(107685), duration(107685), show_title(107685), episode_title(107685), tvss_episode_id(107685), tvss_show_id(107685), show_tms_id(107685), episode_tms_id(107685), item_type(107685), show_description(107685), episode_description(107685), listing_image(107685)
+skipped re-brand subchannels: BTPM Create; ETV World; KAET World; KERA Create; KUHT Create; Milwaukee PBS Create; NE-World; PBS Reno Create; WNPT2 WORLD; WPNE Create
