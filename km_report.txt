@@ -1,12 +1,11 @@
-PEBIS KM build 2026-10-26 19:42 UTC
+PEBIS KM build 2026-10-26 19:57 UTC
 ZIP sweep: 907 ZIP codes
 ZIP sweep: 146 stations found (0 ZIP lookups failed)
 station details: 146 ok, 0 failed
 feeds: 615 playable (323 clear, 292 DRM) across 146 stations
 schedules: 146 / 146 stations returned listings
-channels: 341 kept (49 clear / 292 DRM); 10 subchannels skipped as Create/World/NHK/FNX re-brands
-S/E lookup: 1846/5288 distinct episodes matched (OMDb 196, TMDB 1650); calls this run OMDb 450, TMDB 4000
-guide: 99693 programmes for 341/341 channels; 98823 with description, 38849 with Sxx Eyy
+channels: 351 kept (59 clear / 292 DRM)
+S/E lookup: 1923/5298 distinct episodes matched (OMDb 522, TMDB 1401); calls this run OMDb 450, TMDB 108
+guide: 102290 programmes for 351/351 channels; 101413 with description, 40045 with Sxx Eyy
 guide reach: median 154 h ahead, max 162 h
-PBS listing fields seen (for tuning S/E): start_time(107685), duration(107685), show_title(107685), episode_title(107685), tvss_episode_id(107685), tvss_show_id(107685), show_tms_id(107685), episode_tms_id(107685), item_type(107685), show_description(107685), episode_description(107685), listing_image(107685)
-skipped re-brand subchannels: BTPM Create; ETV World; KAET World; KERA Create; KUHT Create; Milwaukee PBS Create; NE-World; PBS Reno Create; WNPT2 WORLD; WPNE Create
+PBS listing fields seen (for tuning S/E): start_time(110540), duration(110540), show_title(110540), episode_title(110540), tvss_episode_id(110540), tvss_show_id(110540), show_tms_id(110540), episode_tms_id(110540), item_type(110540), show_description(110540), episode_description(110540), listing_image(110540)

@@ -79,6 +79,9 @@ https://urs-anonymous-detect.pbs.org/redirect/34100b6f921341a895575d0dede184bc/
 #EXTINF:-1 tvg-id="KAET.ga-local-subchannel-1" tvg-name="KAET Life" tvg-logo="https://image.pbs.org/stations/kaet-color-cobranded-logo-7yONHt4.png" group-title="Arizona",KAET Life
 https://urs.pbs.org/redirect/d4e71f8df8224284b185314dd8f2da05/
 
+#EXTINF:-1 tvg-id="KAET.ga-local-subchannel-2" tvg-name="KAET World" tvg-logo="https://image.pbs.org/stations/kaet-color-cobranded-logo-7yONHt4.png" group-title="Arizona",KAET World
+https://urs.pbs.org/redirect/e8af40234c4e4d4fbcde92a877b31640/
+
 #EXTINF:-1 tvg-id="KAET.kids-main" tvg-name="PBS KIDS (KAET)" tvg-logo="https://image.pbs.org/stations/kaet-color-cobranded-logo-7yONHt4.png" group-title="Arizona",PBS KIDS (KAET)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
@@ -1268,6 +1271,9 @@ https://urs-anonymous-detect.pbs.org/redirect/2934dc7e10d2424c9207e2481368f8d2/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/ee8f8f170ddc45a9ba39350d31467de3/
 
+#EXTINF:-1 tvg-id="KUON.ga-local-subchannel-1" tvg-name="KUON NE-World" tvg-logo="https://image.pbs.org/stations/kuon-color-cobranded-logo-PK01d9T.png" group-title="Nebraska",KUON NE-World
+https://urs.pbs.org/redirect/c7e200414e0545fdbf9a89baf35b85ed/
+
 #EXTINF:-1 tvg-id="KUON.ga-main" tvg-name="Nebraska Public Media (KUON)" tvg-logo="https://image.pbs.org/stations/kuon-color-cobranded-logo-PK01d9T.png" group-title="Nebraska",Nebraska Public Media (KUON)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
@@ -1283,6 +1289,9 @@ https://urs-anonymous-detect.pbs.org/redirect/71b24d2f970d478e9319a652c6500276/
 #KODIPROP:inputstream.adaptive.stream_headers=User-Agent=okhttp/4.9.0
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/ae9deebdcb42430b80aa62e67e04b188/
+
+#EXTINF:-1 tvg-id="KNPB.ga-local-subchannel-1" tvg-name="KNPB PBS Reno Create" tvg-logo="https://image.pbs.org/stations/knpb-color-cobranded-logo-Y7ubSS4.png" group-title="Nevada",KNPB PBS Reno Create
+https://urs.pbs.org/redirect/94b7643b51ab46c5a34467b521d204d1/
 
 #EXTINF:-1 tvg-id="KLVX.kids-main" tvg-name="PBS KIDS (KLVX)" tvg-logo="https://image.pbs.org/stations/klvx-color-cobranded-logo-xVjR7SI.png" group-title="Nevada",PBS KIDS (KLVX)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -1521,6 +1530,9 @@ https://urs-anonymous-detect.pbs.org/redirect/6a23457c1e2a476da5ee7877ab4be2a2/
 #KODIPROP:inputstream.adaptive.stream_headers=User-Agent=okhttp/4.9.0
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/cea2c8828de84e4793d7a242ac0970f2/
+
+#EXTINF:-1 tvg-id="WNED.ga-local-subchannel-1" tvg-name="WNED BTPM Create" tvg-logo="https://image.pbs.org/stations/wned-color-cobranded-logo-6KBsBya.png" group-title="New York",WNED BTPM Create
+https://urs.pbs.org/redirect/8950a96d595047b3ad0b3576ec9ef548/
 
 #EXTINF:-1 tvg-id="WPBS.ga-main" tvg-name="WPBS PBS" tvg-logo="https://image.pbs.org/stations/wpbs-color-cobranded-logo-TrmdjC5.png" group-title="New York",WPBS PBS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -1935,6 +1947,9 @@ https://urs-anonymous-detect.pbs.org/redirect/bc00aa3f207f4664b73b84b5db8d191e/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/d99419a6285b4a39a7a02ddbbacef275/
 
+#EXTINF:-1 tvg-id="WRLK.ga-local-subchannel-1" tvg-name="WRLK ETV World" tvg-logo="https://image.pbs.org/stations/wrlk-color-cobranded-logo-SvkwrXM.png" group-title="South Carolina",WRLK ETV World
+https://urs.pbs.org/redirect/e3f75d33a4c64cdabedeb5815cf1bbda/
+
 #EXTINF:-1 tvg-id="KUSD.kids-main" tvg-name="PBS KIDS (KUSD)" tvg-logo="https://image.pbs.org/stations/kusd-color-cobranded-logo-9iNdleX.png" group-title="South Dakota",PBS KIDS (KUSD)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
@@ -2042,6 +2057,9 @@ https://urs.pbs.org/redirect/390547271c304704aa44e3b458f88399/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/c464f1d1dd904e358f823a6078a3e43d/
 
+#EXTINF:-1 tvg-id="WNPT.ga-local-subchannel-1" tvg-name="WNPT WNPT2 WORLD" tvg-logo="https://image.pbs.org/stations/wnpt-color-cobranded-logo-MnkcP5l.png" group-title="Tennessee",WNPT WNPT2 WORLD
+https://urs.pbs.org/redirect/676908f098eb4eecbb9171021d5cfe18/
+
 #EXTINF:-1 tvg-id="WTCI.ga-main" tvg-name="WTCI PBS" tvg-logo="https://image.pbs.org/stations/wtci-color-cobranded-logo-JoMIHXF.png" group-title="Tennessee",WTCI PBS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
@@ -2090,6 +2108,9 @@ https://urs-anonymous-detect.pbs.org/redirect/eb3eff2c52cf47639f0cd107c54c5f42/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/801c1ba0a1054009ae74005b34652504/
 
+#EXTINF:-1 tvg-id="KERA.ga-local-subchannel-1" tvg-name="KERA Create" tvg-logo="https://image.pbs.org/stations/kera-color-cobranded-logo-TawskfM.png" group-title="Texas",KERA Create
+https://urs.pbs.org/redirect/f43faf041ce144749acfd510029ad29e/
+
 #EXTINF:-1 tvg-id="KERA.ga-main" tvg-name="KERA PBS" tvg-logo="https://image.pbs.org/stations/kera-color-cobranded-logo-TawskfM.png" group-title="Texas",KERA PBS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
@@ -2113,6 +2134,9 @@ https://urs-anonymous-detect.pbs.org/redirect/f3451d01b25748bbb2e4c5795f99731b/
 #KODIPROP:inputstream.adaptive.stream_headers=User-Agent=okhttp/4.9.0
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/feff381bc436493c896d3199ba4fe2b5/
+
+#EXTINF:-1 tvg-id="KUHT.ga-local-subchannel-1" tvg-name="KUHT Create" tvg-logo="https://image.pbs.org/stations/kuht-color-cobranded-logo-14uuVsD.png" group-title="Texas",KUHT Create
+https://urs.pbs.org/redirect/06f89aed1a5348eebb42f2630ff1569e/
 
 #EXTINF:-1 tvg-id="KACV.ga-main" tvg-name="Panhandle PBS (KACV)" tvg-logo="https://image.pbs.org/stations/kacv-color-cobranded-logo-9QRdiRS.png" group-title="Texas",Panhandle PBS (KACV)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -2463,6 +2487,12 @@ https://urs-anonymous-detect.pbs.org/redirect/7aebf9fdf96141c1aa65489160201426/
 
 #EXTINF:-1 tvg-id="WMVS.ga-local-subchannel-1" tvg-name="WMVS Milwaukee PBS 36.1" tvg-logo="https://image.pbs.org/stations/wmvs-color-cobranded-logo-f5TXVFT.png" group-title="Wisconsin",WMVS Milwaukee PBS 36.1
 https://urs.pbs.org/redirect/1b1be9f6eaa2404d87c5df627a494e0c/
+
+#EXTINF:-1 tvg-id="WMVS.ga-local-subchannel-2" tvg-name="WMVS Milwaukee PBS Create" tvg-logo="https://image.pbs.org/stations/wmvs-color-cobranded-logo-f5TXVFT.png" group-title="Wisconsin",WMVS Milwaukee PBS Create
+https://urs.pbs.org/redirect/48146ce9da3c4321970ddf4da24fb3b7/
+
+#EXTINF:-1 tvg-id="WPNE.ga-local-subchannel-2" tvg-name="WPNE Create" tvg-logo="https://image.pbs.org/stations/wpne-color-cobranded-logo-Ptbi5me.png" group-title="Wisconsin",WPNE Create
+https://urs.pbs.org/redirect/74fe4b86b86147db89e947ab89c44823/
 
 #EXTINF:-1 tvg-id="WPNE.ga-local-subchannel-1" tvg-name="WPNE The Wisconsin Channel" tvg-logo="https://image.pbs.org/stations/wpne-color-cobranded-logo-Ptbi5me.png" group-title="Wisconsin",WPNE The Wisconsin Channel
 https://urs.pbs.org/redirect/d13daeeb354f40a4a100c6a762822da0/
