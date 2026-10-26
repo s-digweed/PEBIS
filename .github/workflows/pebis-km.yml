@@ -1,0 +1,62 @@
+name: PEBIS KM (all PBS stations)
+
+# GitHub only runs SCHEDULED workflows from the default branch (main), so this file
+# must live on main. It checks out the KM branch, runs generate_km.py from there,
+# and commits the results back to KM. (Keep a copy on KM too - harmless.)
+on:
+  schedule:
+    - cron: "37 7 * * *"      # 10:37 KSA
+    - cron: "37 19 * * *"     # 22:37 KSA
+  workflow_dispatch:
+  push:
+    branches: [ KM ]
+    paths:
+      - "generate_km.py"
+      - ".github/workflows/pebis-km.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pebis-km
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout KM branch
+        uses: actions/checkout@v4
+        with:
+          ref: KM
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests zipcodes
+
+      - name: Build PBS playlist + guide
+        env:
+          OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python -u generate_km.py
+
+      - name: Commit to KM
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for f in pbs_km.m3u pbs_km.xml.gz km_report.txt km_stations.json km_se_cache.json; do
+            if [ -e "$f" ]; then git add "$f"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Update PEBIS KM playlist + guide [skip ci]"
+            git pull --rebase origin KM || git rebase --abort
+            git push origin HEAD:KM
+          fi
+          
