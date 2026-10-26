@@ -40,13 +40,16 @@ jobs:
         run: pip install requests zipcodes
 
       - name: Build PBS playlist + guide
+        env:
+          OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: python -u generate_km.py
 
       - name: Commit to KM
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in pbs_km.m3u pbs_km.xml.gz km_report.txt km_stations.json; do
+          for f in pbs_km.m3u pbs_km.xml.gz km_report.txt km_stations.json km_se_cache.json; do
             if [ -e "$f" ]; then git add "$f"; fi
           done
           if git diff --cached --quiet; then
