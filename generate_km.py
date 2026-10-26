@@ -290,6 +290,174 @@ def parse_time(v):
 def ts(dt):
     return dt.strftime("%Y%m%d%H%M%S +0000")
 
+# ── 6. season/episode lookup: OMDb first, TMDB second ─────────────────────────
+# PBS's schedule API carries no season/episode numbers, only show + episode titles.
+# For each show we fetch its episode list (OMDb: per-season lists; TMDB: per-season
+# lists) once, cache it in km_se_cache.json (committed), and match episode titles.
+# OMDb's free key allows ~1,000 requests/day, so OMDb calls are budgeted per run and
+# spent on the most-aired shows first; whatever isn't covered yet falls to TMDB and
+# fills in over the following runs. Lists are refreshed after SE_TTL_DAYS.
+OMDB_KEY        = os.getenv("OMDB_API_KEY", "").strip()
+TMDB_KEY        = os.getenv("TMDB_API_KEY", "").strip()
+SE_CACHE_FILE   = "km_se_cache.json"
+SE_TTL_DAYS     = 30
+OMDB_RUN_BUDGET = int(os.getenv("KM_OMDB_BUDGET", "450"))   # 2 runs/day stays under 1,000
+TMDB_RUN_BUDGET = int(os.getenv("KM_TMDB_BUDGET", "4000"))
+MAX_SEASONS     = 60
+
+def _n(s):
+    s = (s or "").lower().replace("&", "and")
+    s = re.sub(r"\bpart\s+(one|two|three|four|five|six)\b",
+               lambda m: "part" + str(["one","two","three","four","five","six"].index(m.group(1)) + 1), s)
+    s = re.sub(r"[\(\[][^\)\]]*[\)\]]", " ", s)            # drop (bracketed) notes
+    return re.sub(r"[^a-z0-9]", "", s)
+
+class SELookup:
+    def __init__(self):
+        try:
+            self.c = json.load(open(SE_CACHE_FILE, encoding="utf-8"))
+        except Exception:
+            self.c = {}
+        for k in ("omdb_show", "omdb_season", "tmdb_show", "tmdb_season"):
+            self.c.setdefault(k, {})
+        self.omdb_left, self.tmdb_left = OMDB_RUN_BUDGET, TMDB_RUN_BUDGET
+        self.now = time.time()
+        self.stats = {"omdb_calls": 0, "tmdb_calls": 0}
+
+    def fresh(self, ent):
+        return ent is not None and self.now - ent.get("t", 0) < SE_TTL_DAYS * 86400
+
+    # -- OMDb --
+    def _omdb(self, **params):
+        if not OMDB_KEY or self.omdb_left <= 0:
+            return None
+        self.omdb_left -= 1; self.stats["omdb_calls"] += 1
+        try:
+            r = requests.get("https://www.omdbapi.com/", params={"apikey": OMDB_KEY, **params}, timeout=20)
+            j = r.json()
+            if str(j.get("Error", "")).lower().startswith("request limit"):
+                self.omdb_left = 0; return None
+            return j
+        except Exception:
+            return None
+
+    def omdb_map(self, show):
+        key = _n(show)
+        ent = self.c["omdb_show"].get(key)
+        if not self.fresh(ent):
+            j = self._omdb(t=show, type="series")
+            if j is None:
+                return None                              # out of budget: try later
+            if j.get("Response") != "True":
+                self.c["omdb_show"][key] = {"t": self.now, "id": None}; return {}
+            try: seasons = min(int(j.get("totalSeasons") or 0), MAX_SEASONS)
+            except ValueError: seasons = 0
+            ent = self.c["omdb_show"][key] = {"t": self.now, "id": j.get("imdbID"), "seasons": seasons}
+        if not ent.get("id"):
+            return {}
+        out, complete = {}, True
+        for sn in range(1, ent.get("seasons", 0) + 1):
+            sk = f"{ent['id']}|{sn}"
+            se = self.c["omdb_season"].get(sk)
+            if not self.fresh(se):
+                j = self._omdb(i=ent["id"], Season=sn)
+                if j is None:
+                    complete = False; break
+                eps = {}
+                for e in (j.get("Episodes") or []) if j.get("Response") == "True" else []:
+                    try: eps[_n(e.get("Title"))] = int(e.get("Episode"))
+                    except (TypeError, ValueError): pass
+                se = self.c["omdb_season"][sk] = {"t": self.now, "eps": eps}
+            for t, e in se["eps"].items():
+                out.setdefault(t, (sn, e))
+        return out if (out or complete) else None
+
+    # -- TMDB --
+    def _tmdb(self, path, **params):
+        if not TMDB_KEY or self.tmdb_left <= 0:
+            return None
+        self.tmdb_left -= 1; self.stats["tmdb_calls"] += 1
+        try:
+            r = requests.get(f"https://api.themoviedb.org/3{path}",
+                             params={"api_key": TMDB_KEY, **params}, timeout=20)
+            return r.json() if r.status_code == 200 else {}
+        except Exception:
+            return None
+
+    def tmdb_map(self, show):
+        key = _n(show)
+        ent = self.c["tmdb_show"].get(key)
+        if not self.fresh(ent):
+            j = self._tmdb("/search/tv", query=show)
+            if j is None:
+                return None
+            res = [x for x in (j.get("results") or []) if _n(x.get("name")) == key] or (j.get("results") or [])[:1]
+            if not res:
+                self.c["tmdb_show"][key] = {"t": self.now, "id": None}; return {}
+            d = self._tmdb(f"/tv/{res[0]['id']}")
+            if d is None:
+                return None
+            seasons = [s.get("season_number") for s in (d.get("seasons") or []) if s.get("season_number")]
+            ent = self.c["tmdb_show"][key] = {"t": self.now, "id": res[0]["id"], "seasons": seasons[:MAX_SEASONS]}
+        if not ent.get("id"):
+            return {}
+        out, complete = {}, True
+        for sn in ent.get("seasons", []):
+            sk = f"{ent['id']}|{sn}"
+            se = self.c["tmdb_season"].get(sk)
+            if not self.fresh(se):
+                j = self._tmdb(f"/tv/{ent['id']}/season/{sn}")
+                if j is None:
+                    complete = False; break
+                eps = {_n(e.get("name")): e.get("episode_number") for e in (j.get("episodes") or [])
+                       if e.get("name") and e.get("episode_number")}
+                se = self.c["tmdb_season"][sk] = {"t": self.now, "eps": eps}
+            for t, e in se["eps"].items():
+                out.setdefault(t, (sn, e))
+        return out if (out or complete) else None
+
+    @staticmethod
+    def match(m, ep):
+        if not m:
+            return None
+        k = _n(ep)
+        if not k:
+            return None
+        if k in m:
+            return m[k]
+        import difflib
+        best = difflib.get_close_matches(k, list(m.keys()), n=1, cutoff=0.9)
+        return m[best[0]] if best else None
+
+    def resolve(self, wanted):
+        """wanted: {show: {episode_title: airings}} -> {(show, ep): (s, e, source)}"""
+        out = {}
+        shows = sorted(wanted, key=lambda s: -sum(wanted[s].values()))   # most-aired first
+        src_count = {"OMDb": 0, "TMDB": 0}
+        for show in shows:
+            eps = wanted[show]
+            om = self.omdb_map(show)
+            left = []
+            for ep in eps:
+                hit = self.match(om, ep)
+                if hit:
+                    out[(show, ep)] = (*hit, "OMDb"); src_count["OMDb"] += 1
+                else:
+                    left.append(ep)
+            if left:
+                tm = self.tmdb_map(show)
+                for ep in left:
+                    hit = self.match(tm, ep)
+                    if hit:
+                        out[(show, ep)] = (*hit, "TMDB"); src_count["TMDB"] += 1
+        json.dump(self.c, open(SE_CACHE_FILE, "w", encoding="utf-8"), separators=(",", ":"))
+        total = sum(len(v) for v in wanted.values())
+        log(f"S/E lookup: {len(out)}/{total} distinct episodes matched "
+            f"(OMDb {src_count['OMDb']}, TMDB {src_count['TMDB']}); "
+            f"calls this run OMDb {self.stats['omdb_calls']}, TMDB {self.stats['tmdb_calls']}"
+            + ("" if OMDB_KEY else " - OMDB_API_KEY not set") + ("" if TMDB_KEY else " - TMDB_API_KEY not set"))
+        return out
+
 # ── main ──────────────────────────────────────────────────────────────────────
 def main():
     log(f"PEBIS KM build {NOW:%Y-%m-%d %H:%M} UTC")
@@ -379,6 +547,15 @@ def main():
         lines.append("")
     open(OUT_M3U, "w", encoding="utf-8").write("\n".join(lines))
 
+    # ---- season/episode lookup (OMDb, then TMDB) ----
+    wanted = {}
+    for c in chans:
+        for it in c["items"]:
+            show, ep = (it.get("show_title") or "").strip(), (it.get("episode_title") or "").strip()
+            if show and ep and _n(ep) != _n(show) and not season_episode(it):
+                wanted.setdefault(show, {}); wanted[show][ep] = wanted[show].get(ep, 0) + 1
+    se_map = SELookup().resolve(wanted) if (OMDB_KEY or TMDB_KEY) else {}
+
     # ---- EPG ----
     keep_from = NOW - timedelta(hours=KEEP_PAST_H)
     x = ['<?xml version="1.0" encoding="UTF-8"?>', '<tv generator-info-name="PEBIS-KM">']
@@ -413,6 +590,9 @@ def main():
             if it.get("listing_image"):
                 p += f'<icon src={quoteattr(it["listing_image"])}/>'
             se = season_episode(it)
+            if not se:
+                hit = se_map.get(((it.get("show_title") or "").strip(), sub))
+                se = hit[:2] if hit else None
             if se:
                 p += (f'<episode-num system="onscreen">S{se[0]:02d} E{se[1]:02d}</episode-num>'
                       f'<episode-num system="xmltv_ns">{se[0]-1}.{se[1]-1}.</episode-num>'); se_n += 1
