@@ -1,15 +1,15 @@
 #EXTM3U url-tvg="https://raw.githubusercontent.com/s-digweed/PEBIS/KM/pbs_km.xml.gz"
 
-#EXTINF:-1 tvg-id="PBS.ga-fnx" tvg-name="FNX" tvg-logo="https://image.pbs.org/stations/kakm-color-cobranded-logo-JNMGa5R.png" group-title="PBS National",FNX
+#EXTINF:-1 tvg-id="PBS.ga-fnx" tvg-name="FNX" tvg-logo="https://i.imgur.com/R5it4nb.png" group-title="PBS National",FNX
 https://urs.pbs.org/redirect/bccd236849ae447dbd5e8c4e1ae0ab26/
 
-#EXTINF:-1 tvg-id="PBS.ga-nhk" tvg-name="NHK World" tvg-logo="https://image.pbs.org/stations/kakm-color-cobranded-logo-JNMGa5R.png" group-title="PBS National",NHK World
+#EXTINF:-1 tvg-id="PBS.ga-nhk" tvg-name="NHK World" tvg-logo="https://i.imgur.com/Py92Hrg.png" group-title="PBS National",NHK World
 https://urs.pbs.org/redirect/f5a1093eb9224e708ceca94e108e2bca/
 
-#EXTINF:-1 tvg-id="PBS.ga-create" tvg-name="PBS Create" tvg-logo="https://image.pbs.org/stations/kakm-color-cobranded-logo-JNMGa5R.png" group-title="PBS National",PBS Create
+#EXTINF:-1 tvg-id="PBS.ga-create" tvg-name="PBS Create" tvg-logo="https://i.imgur.com/cJ45Ipl.png" group-title="PBS National",PBS Create
 https://urs.pbs.org/redirect/22b7d4e285fa4c1da5e1873cf096d559/
 
-#EXTINF:-1 tvg-id="PBS.ga-world" tvg-name="PBS World" tvg-logo="https://image.pbs.org/stations/kakm-color-cobranded-logo-JNMGa5R.png" group-title="PBS National",PBS World
+#EXTINF:-1 tvg-id="PBS.ga-world" tvg-name="PBS World" tvg-logo="https://i.imgur.com/iWZOPik.png" group-title="PBS National",PBS World
 https://urs.pbs.org/redirect/4ad48eae41ff49a68046871efdf8b60c/
 
 #EXTINF:-1 tvg-id="WBIQ.ga-main" tvg-name="APT PBS (WBIQ)" tvg-logo="https://image.pbs.org/stations/wbiq-color-cobranded-logo-eEd1fB6.png" group-title="Alabama",APT PBS (WBIQ)
