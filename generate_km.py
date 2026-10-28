@@ -68,6 +68,10 @@ PROFILE_LABELS = {
 }
 NATIONAL = {"ga-create": "PBS Create", "ga-world": "PBS World", "ga-nhk": "NHK World",
             "ga-fnx": "FNX"}
+# Fixed logos for the national networks (the station API hands back a local station's
+# logo for these). Taqi's picks.
+NATIONAL_LOGOS = {"ga-create": "https://i.imgur.com/cJ45Ipl.png", "ga-world": "https://i.imgur.com/iWZOPik.png",
+                  "ga-nhk": "https://i.imgur.com/Py92Hrg.png", "ga-fnx": "https://i.imgur.com/R5it4nb.png"}
 SIMULCAST_MARKERS = ("create", "world", "nhk", "fnx")
 STATE_NAMES = {
     "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas", "CA": "California",
@@ -593,7 +597,8 @@ def main():
             for osid, ocid in pool:
                 items = sched.get(osid, {}).get(ocid)
                 if items: break
-        chans.append({**r, "name": name, "tvg": tvg, "group": group, "items": items or []})
+        logo = NATIONAL_LOGOS.get(r["profile"], r["logo"])
+        chans.append({**r, "name": name, "tvg": tvg, "group": group, "items": items or [], "logo": logo})
     if not chans:
         open(OUT_REPORT, "w", encoding="utf-8").write("\n".join(report) + "\n")
         sys.exit("ABORT: no channels built - PBS APIs unreachable? Previous files kept.")
