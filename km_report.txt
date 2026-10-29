@@ -1,12 +1,12 @@
-PEBIS KM build 2026-10-29 14:38 UTC
+PEBIS KM build 2026-10-29 23:34 UTC
 ZIP sweep: 907 ZIP codes
 ZIP sweep: 146 stations found (0 ZIP lookups failed)
 station details: 146 ok, 0 failed
 feeds: 615 playable (323 clear, 292 DRM) across 146 stations
 schedules: 146 / 146 stations returned listings
 channels: 351 kept (59 clear / 292 DRM)
-Gracenote: 2/2 sources read; 2301 episode ids (+539 new), 2085 title keys on file
-S/E lookup: 1470/3885 distinct episodes matched (OMDb 741, TMDB 729); calls this run OMDb 450, TMDB 23
-guide: 106611 programmes for 351/351 channels; 105727 with description, 55851 with Sxx Eyy (PBS 1, Gracenote 30822, OMDb 12022, TMDB 13006)
-guide reach: median 159 h ahead, max 167 h
-PBS listing fields seen (for tuning S/E): start_time(111273), duration(111273), show_title(111273), episode_title(111273), tvss_episode_id(111273), tvss_show_id(111273), show_tms_id(111273), episode_tms_id(111273), item_type(111273), show_description(111273), episode_description(111273), listing_image(111273)
+Gracenote: 2/2 sources read; 2301 episode ids (+0 new), 2085 title keys on file
+S/E lookup: 1482/3902 distinct episodes matched (OMDb 765, TMDB 717); calls this run OMDb 450, TMDB 10
+guide: 100187 programmes for 351/351 channels; 99332 with description, 51774 with Sxx Eyy (PBS 2, Gracenote 27571, OMDb 11585, TMDB 12616)
+guide reach: median 150 h ahead, max 158 h
+PBS listing fields seen (for tuning S/E): start_time(111285), duration(111285), show_title(111285), episode_title(111285), tvss_episode_id(111285), tvss_show_id(111285), show_tms_id(111285), episode_tms_id(111285), item_type(111285), show_description(111285), episode_description(111285), listing_image(111285)
