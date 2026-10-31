@@ -192,7 +192,7 @@ https://kdindt.lls.pbs.org/lls/kdindt/kdindt-dash-drm/dash-drm.mpd
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://wjctdt.lls.pbs.org/lls/wjctdt/wjctdt-dash-drm/dash-drm.mpd
 
-#EXTINF:-1 tvg-id="KAMU" tvg-name="KAMU" tvg-logo="https://image.pbs.org/stations/kamu-black-logo-eruIdqe.png" group-title="Pebis",KAMU
+#EXTINF:-1 tvg-id="KAMU" tvg-name="KAMU" tvg-logo="https://image.pbs.org/stations/kamu-black-logo-hZ3Hbnf.png" group-title="Pebis",KAMU
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://proxy.drm.pbs.org/license/widevine/0a2058d6-59bc-4799-bbe5-06cf6304d244-dash|User-Agent=okhttp/4.9.0|R{SSM}|
