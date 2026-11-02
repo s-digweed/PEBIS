@@ -166,6 +166,9 @@ https://urs.pbs.org/redirect/5d9d994c875a4a9596723e3f5539e47f/
 #EXTINF:-1 tvg-id="KRCB.ga-france-24" tvg-name="KRCB ga-france-24" tvg-logo="https://image.pbs.org/stations/krcb-color-cobranded-logo-7HSmaEx.png" group-title="California",KRCB ga-france-24
 https://urs.pbs.org/redirect/b7b43d74d74843d7b4588ba9a2bc205a/
 
+#EXTINF:-1 tvg-id="KVCR.ga-france-24" tvg-name="KVCR ga-france-24" tvg-logo="https://image.pbs.org/stations/kvcr-color-cobranded-logo-Nb43jnp.png" group-title="California",KVCR ga-france-24
+https://urs.pbs.org/redirect/4b81fc43d4394511b9cc35b9f807dbf4/
+
 #EXTINF:-1 tvg-id="KVCR.ga-main" tvg-name="KVCR PBS" tvg-logo="https://image.pbs.org/stations/kvcr-color-cobranded-logo-Nb43jnp.png" group-title="California",KVCR PBS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
@@ -951,6 +954,9 @@ https://urs-anonymous-detect.pbs.org/redirect/ed504d8aa8d0473b905d4535a444be5f/
 #KODIPROP:inputstream.adaptive.stream_headers=User-Agent=okhttp/4.9.0
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/69c14c98dd734711b6b4a067f301d078/
+
+#EXTINF:-1 tvg-id="WCBB.ga-france-24" tvg-name="WCBB ga-france-24" tvg-logo="https://image.pbs.org/stations/wcbb-color-cobranded-logo-H4J4vK3.png" group-title="Maine",WCBB ga-france-24
+https://urs.pbs.org/redirect/96818a43f3d54101a3e87af66abe2c87/
 
 #EXTINF:-1 tvg-id="WMPB.ga-main" tvg-name="MPT/Maryland Public Television (WMPB)" tvg-logo="https://image.pbs.org/stations/wmpb-color-cobranded-logo-tQavSBV.png" group-title="Maryland",MPT/Maryland Public Television (WMPB)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -1849,6 +1855,9 @@ https://urs-anonymous-detect.pbs.org/redirect/2677ddc272404a3e836d9d5300535705/
 #KODIPROP:inputstream.adaptive.stream_headers=User-Agent=okhttp/4.9.0
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/432d4446493a4f679bfdda9fbfa50895/
+
+#EXTINF:-1 tvg-id="WITF.ga-france-24" tvg-name="WITF ga-france-24" tvg-logo="https://image.pbs.org/stations/witf-color-cobranded-logo-bUWb4nH.png" group-title="Pennsylvania",WITF ga-france-24
+https://urs.pbs.org/redirect/0212a96ab486469581756982bc4933f0/
 
 #EXTINF:-1 tvg-id="WITF.ga-main" tvg-name="WITF PBS" tvg-logo="https://image.pbs.org/stations/witf-color-cobranded-logo-bUWb4nH.png" group-title="Pennsylvania",WITF PBS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
