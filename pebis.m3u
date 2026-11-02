@@ -56,7 +56,7 @@ https://kuatdt.lls.pbs.org/lls/kuatdt/kuatdt-dash-drm/dash-drm.mpd
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://wipbdt.lls.pbs.org/lls/wipbdt/wipbdt-dash-drm/dash-drm.mpd
 
-#EXTINF:-1 tvg-id="KPBT" tvg-name="Basin PBS" tvg-logo="https://image.pbs.org/stations/kpbt-white-logo-L9b5zUt.png" group-title="Pebis",Basin PBS
+#EXTINF:-1 tvg-id="KPBT" tvg-name="Basin PBS" tvg-logo="https://image.pbs.org/stations/kpbt-white-logo-wtZ2jvy.png" group-title="Pebis",Basin PBS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://proxy.drm.pbs.org/license/widevine/03627652-598a-4808-9bdb-e0f519e43665-dash|User-Agent=okhttp/4.9.0|R{SSM}|
