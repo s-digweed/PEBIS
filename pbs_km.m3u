@@ -2085,7 +2085,7 @@ https://urs-anonymous-detect.pbs.org/redirect/7586114e3cee4730b13291f4cb345db6/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/17be49d6e3a549ddb32e51aa6bafda94/
 
-#EXTINF:-1 tvg-id="KPBT.ga-main" tvg-name="Basin PBS (KPBT)" tvg-logo="https://image.pbs.org/stations/kpbt-color-cobranded-logo-5U7PbCB.png" group-title="Texas",Basin PBS (KPBT)
+#EXTINF:-1 tvg-id="KPBT.ga-main" tvg-name="Basin PBS (KPBT)" tvg-logo="https://image.pbs.org/stations/kpbt-color-cobranded-logo-xbaMvL9.png" group-title="Texas",Basin PBS (KPBT)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://proxy.drm.pbs.org/license/widevine/03627652-598a-4808-9bdb-e0f519e43665-dash|User-Agent=okhttp/4.9.0|R{SSM}|
@@ -2219,7 +2219,7 @@ https://urs-anonymous-detect.pbs.org/redirect/485b339f52b34d2a89b1ca01c360ced9/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/0472b024fefa4c7a840f4f5560cd1d7b/
 
-#EXTINF:-1 tvg-id="KPBT.kids-main" tvg-name="PBS KIDS (KPBT)" tvg-logo="https://image.pbs.org/stations/kpbt-color-cobranded-logo-5U7PbCB.png" group-title="Texas",PBS KIDS (KPBT)
+#EXTINF:-1 tvg-id="KPBT.kids-main" tvg-name="PBS KIDS (KPBT)" tvg-logo="https://image.pbs.org/stations/kpbt-color-cobranded-logo-xbaMvL9.png" group-title="Texas",PBS KIDS (KPBT)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://proxy.drm.pbs.org/license/widevine/est-dash|User-Agent=okhttp/4.9.0|R{SSM}|
