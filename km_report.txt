@@ -1,12 +1,12 @@
-PEBIS KM build 2026-11-05 15:47 UTC
+PEBIS KM build 2026-11-06 00:33 UTC
 ZIP sweep: 907 ZIP codes
 ZIP sweep: 146 stations found (0 ZIP lookups failed)
 station details: 146 ok, 0 failed
 feeds: 618 playable (326 clear, 292 DRM) across 146 stations
 schedules: 146 / 146 stations returned listings
 channels: 354 kept (62 clear / 292 DRM)
-Gracenote: 2/2 sources read; 5012 episode ids (+301 new), 4524 title keys on file
-S/E lookup: 1107/2934 distinct episodes matched (OMDb 568, TMDB 539); calls this run OMDb 9, TMDB 8
-guide: 110941 programmes for 354/354 channels; 110074 with description, 63595 with Sxx Eyy (PBS 4, Gracenote 33077, OMDb 17564, TMDB 12950)
-guide reach: median 158 h ahead, max 166 h
+Gracenote: 2/2 sources read; 5012 episode ids (+0 new), 4524 title keys on file
+S/E lookup: 1107/2934 distinct episodes matched (OMDb 568, TMDB 539); calls this run OMDb 0, TMDB 0
+guide: 104303 programmes for 354/354 channels; 103461 with description, 59232 with Sxx Eyy (PBS 4, Gracenote 29779, OMDb 16973, TMDB 12476)
+guide reach: median 149 h ahead, max 157 h
 PBS listing fields seen (for tuning S/E): start_time(115368), duration(115368), show_title(115368), episode_title(115368), tvss_episode_id(115368), tvss_show_id(115368), show_tms_id(115368), episode_tms_id(115368), item_type(115368), show_description(115368), episode_description(115368), listing_image(115368)
