@@ -384,7 +384,7 @@ https://wyindt.lls.pbs.org/lls/wyindt/wyindt-dash-drm/dash-drm.mpd
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://wlpbdt.lls.pbs.org/lls/wlpbdt/wlpbdt-dash-drm/dash-drm.mpd
 
-#EXTINF:-1 tvg-id="WCBB" tvg-name="Maine PBS" tvg-logo="https://image.pbs.org/stations/wcbb-black-logo-gZJ2OCR.png" group-title="Pebis",Maine PBS
+#EXTINF:-1 tvg-id="WCBB" tvg-name="Maine PBS" tvg-logo="https://image.pbs.org/stations/wcbb-black-logo-fMh1i01.png" group-title="Pebis",Maine PBS
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
 #KODIPROP:inputstream.adaptive.license_key=https://proxy.drm.pbs.org/license/widevine/0d61938a-fe4b-43ff-89d5-59d769e148de-dash|User-Agent=okhttp/4.9.0|R{SSM}|
