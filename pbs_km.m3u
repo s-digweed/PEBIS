@@ -2342,6 +2342,9 @@ https://urs-anonymous-detect.pbs.org/redirect/97773c9aab364cecbfde2b473be3850d/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/18beb1535c554801839e262774bdc9ec/
 
+#EXTINF:-1 tvg-id="WBRA.ga-local-subchannel-1" tvg-name="WBRA Blue Ridge ECHO" tvg-logo="https://image.pbs.org/stations/wbra-color-cobranded-logo-7iIKCK5.png" group-title="Virginia",WBRA Blue Ridge ECHO
+https://urs.pbs.org/redirect/24e578c4c28a4abbadaa8a2968c1908e/
+
 #EXTINF:-1 tvg-id="WCVE.ga-france-24" tvg-name="WCVE ga-france-24" tvg-logo="https://image.pbs.org/stations/wcve-color-cobranded-logo-jEoG9w5.png" group-title="Virginia",WCVE ga-france-24
 https://urs.pbs.org/redirect/867ac613c4fc444e86b3d9f98842be42/
 
