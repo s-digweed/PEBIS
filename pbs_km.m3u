@@ -1296,6 +1296,9 @@ https://urs-anonymous-detect.pbs.org/redirect/71b24d2f970d478e9319a652c6500276/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/ae9deebdcb42430b80aa62e67e04b188/
 
+#EXTINF:-1 tvg-id="KLVX.ga-france-24" tvg-name="KLVX ga-france-24" tvg-logo="https://image.pbs.org/stations/klvx-color-cobranded-logo-xVjR7SI.png" group-title="Nevada",KLVX ga-france-24
+https://urs.pbs.org/redirect/96d915f68ce441dc9e0c5661351c1c3f/
+
 #EXTINF:-1 tvg-id="KNPB.ga-local-subchannel-1" tvg-name="KNPB PBS Reno Create" tvg-logo="https://image.pbs.org/stations/knpb-color-cobranded-logo-Y7ubSS4.png" group-title="Nevada",KNPB PBS Reno Create
 https://urs.pbs.org/redirect/94b7643b51ab46c5a34467b521d204d1/
 
@@ -1958,6 +1961,9 @@ https://urs-anonymous-detect.pbs.org/redirect/d99419a6285b4a39a7a02ddbbacef275/
 
 #EXTINF:-1 tvg-id="WRLK.ga-local-subchannel-1" tvg-name="WRLK ETV World" tvg-logo="https://image.pbs.org/stations/wrlk-color-cobranded-logo-SvkwrXM.png" group-title="South Carolina",WRLK ETV World
 https://urs.pbs.org/redirect/e3f75d33a4c64cdabedeb5815cf1bbda/
+
+#EXTINF:-1 tvg-id="WRLK.ga-france-24" tvg-name="WRLK ga-france-24" tvg-logo="https://image.pbs.org/stations/wrlk-color-cobranded-logo-SvkwrXM.png" group-title="South Carolina",WRLK ga-france-24
+https://urs.pbs.org/redirect/4e672cee7e6546469c466f44609f982f/
 
 #EXTINF:-1 tvg-id="KUSD.kids-main" tvg-name="PBS KIDS (KUSD)" tvg-logo="https://image.pbs.org/stations/kusd-color-cobranded-logo-9iNdleX.png" group-title="South Dakota",PBS KIDS (KUSD)
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
