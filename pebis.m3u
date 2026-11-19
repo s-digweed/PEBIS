@@ -518,7 +518,7 @@ https://ktnwdt.lls.pbs.org/lls/ktnwdt/ktnwdt-dash-drm/dash-drm.mpd
 #KODIPROP:inputstream.adaptive.license_key=https://proxy.drm.pbs.org/license/widevine/8ef49703-72af-4204-a95b-de4c820e1f25-dash|User-Agent=okhttp/4.9.0|R{SSM}|
 #KODIPROP:inputstream.adaptive.stream_headers=User-Agent=okhttp/4.9.0
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
-https://wsbedt.lls.pbs.org/lls/wsbedt/wsbedt-dash-drm/dash-drm.mpd
+https://urs-anonymous-detect.pbs.org/redirect/c5a90bbafc4143eebbf566dda61859ff/
 
 #EXTINF:-1 tvg-id="KETA" tvg-name="OETA" tvg-logo="https://image.pbs.org/stations/keta-black-logo-cRc5zYm.png" group-title="Pebis",OETA
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
