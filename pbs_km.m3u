@@ -501,7 +501,7 @@ https://urs-anonymous-detect.pbs.org/redirect/727da410a4794a27a0d730340e687ae4/
 #EXTVLCOPT:http-user-agent=okhttp/4.9.0
 https://urs-anonymous-detect.pbs.org/redirect/e79f36572b534bc6a7b9f76e00cd6e65/
 
-#EXTINF:-1 tvg-id="WPBT.ga-local-subchannel-1" tvg-name="WPBT WXEL HDTV" tvg-logo="https://image.pbs.org/stations/wpbt-color-cobranded-logo-U9isDjp.png" group-title="Florida",WPBT WXEL HDTV
+#EXTINF:-1 tvg-id="WPBT.ga-local-subchannel-1" tvg-name="WPBT Local 1" tvg-logo="https://image.pbs.org/stations/wpbt-color-cobranded-logo-U9isDjp.png" group-title="Florida",WPBT Local 1
 https://urs.pbs.org/redirect/d83a0454db744db9bf7648cc782c7e53/
 
 #EXTINF:-1 tvg-id="WUCF.ga-france-24" tvg-name="WUCF ga-france-24" tvg-logo="https://image.pbs.org/stations/wucf-color-cobranded-logo-vRsxUz5.png" group-title="Florida",WUCF ga-france-24
